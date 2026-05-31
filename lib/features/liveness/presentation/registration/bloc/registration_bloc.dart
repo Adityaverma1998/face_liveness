@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:face_liveness/core/services/face_detection_service.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
@@ -36,6 +37,14 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     final file = File(image.path);
 
     final faces = await _faceDetectorService.detectFaces(file);
+
+    debugPrint('Faces Count: ${faces.length}');
+
+    if (faces.isNotEmpty) {
+      final face = faces.first;
+
+      debugPrint('Bounding Box: ${face.boundingBox}');
+    }
 
     if (faces.isEmpty) {
       emit(state.copyWith(errorMessage: 'No face detected'));
