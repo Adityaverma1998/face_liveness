@@ -1,0 +1,72 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+
+class ImageUploadWidget extends StatelessWidget {
+  const ImageUploadWidget({
+    super.key,
+    this.imageFile,
+    required this.onTakePhoto,
+    required this.onChooseImage,
+  });
+
+  final File? imageFile;
+  final VoidCallback onTakePhoto;
+  final VoidCallback onChooseImage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          height: 220,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.grey.shade300,
+            ),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: imageFile != null
+                ? Image.file(
+                    imageFile!,
+                    fit: BoxFit.cover,
+                  )
+                : Padding(
+  padding: const EdgeInsets.all(24),
+  child: Icon(
+    Icons.face,
+    size: 120,
+    color: Theme.of(context).colorScheme.primary,
+  ),
+),
+          ),
+        ),
+
+        const SizedBox(height: 20),
+
+        Row(
+          children: [
+            Expanded(
+              child: ElevatedButton.icon(
+                onPressed: onTakePhoto,
+                icon: const Icon(Icons.camera_alt),
+                label: const Text('Take Photo'),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: OutlinedButton.icon(
+                onPressed: onChooseImage,
+                icon: const Icon(Icons.photo_library),
+                label: const Text('Choose Image'),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
