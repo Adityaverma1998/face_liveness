@@ -1,3 +1,4 @@
+import 'package:face_liveness/core/services/face_detection_service.dart';
 import 'package:face_liveness/features/liveness/presentation/home/view/screen/home_sceen';
 import 'package:face_liveness/features/liveness/presentation/registration/bloc/registration_bloc.dart';
 import 'package:face_liveness/features/liveness/presentation/registration/view/screen/registration_page.dart';
@@ -15,8 +16,9 @@ class AppRouter {
       case AppRoutes.registerFace:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (_) => RegistrationBloc(),
-            child: RegistrationPage(),
+            create: (_) =>
+                RegistrationBloc(faceDetectorService: FaceDetectorService()),
+            child: const RegistrationPage(),
           ),
         );
 
