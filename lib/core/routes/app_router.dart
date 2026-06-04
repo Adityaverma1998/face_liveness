@@ -1,5 +1,5 @@
 import 'package:face_liveness/core/services/face_detection_service.dart';
-import 'package:face_liveness/features/liveness/presentation/home/view/screen/home_sceen';
+import 'package:face_liveness/features/liveness/presentation/home/view/screen/home_screen.dart';
 import 'package:face_liveness/features/liveness/presentation/registration/bloc/registration_bloc.dart';
 import 'package:face_liveness/features/liveness/presentation/registration/view/screen/registration_page.dart';
 import 'package:flutter/material.dart';

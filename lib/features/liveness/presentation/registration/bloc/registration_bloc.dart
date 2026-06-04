@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:face_liveness/core/services/face_detection_service.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
@@ -14,6 +15,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     : _faceDetectorService = faceDetectorService,
       super(const RegistrationState()) {
     on<TakePhotoRequested>(_onTakePhotoRequested);
+    on<ChooseImageRequested>(_onChooseImageRequested);
   }
   final FaceDetectorService _faceDetectorService;
 
@@ -61,7 +63,13 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       return;
     }
 
-    emit(state.copyWith(selectedImage: file, errorMessage: null));
+    emit(
+      state.copyWith(
+        selectedImage: file,
+        errorMessage: null,
+        detectedFaces: faces,
+      ),
+    );
   }
 
   Future<void> _onChooseImageRequested(

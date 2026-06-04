@@ -1,6 +1,6 @@
 import 'package:face_liveness/core/routes/app_router.dart';
 import 'package:face_liveness/core/routes/app_routes.dart';
-import 'package:face_liveness/features/liveness/presentation/home/view/screen/home_sceen';
+import 'package:face_liveness/features/liveness/presentation/home/view/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
